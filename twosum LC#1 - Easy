@@ -1,0 +1,15 @@
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        d={}
+        # as we need index and number both, use enumerate
+        for index,num in enumerate(nums):
+            # if 1st ele is num, as we have to find 2 sum, second element is (target-num)
+            second=target - num
+            # if second element is already in dictionary, return its index as well as the current number index that we are at 
+            if second in d:
+                return [d[second], index]
+            else:
+                # if second number not found in dict, then add the current number to the dictionary along with its index
+                d[num]=index
+        # return [] if no pair is found
+        return []
