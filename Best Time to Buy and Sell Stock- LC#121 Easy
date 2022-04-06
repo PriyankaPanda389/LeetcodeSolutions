@@ -1,0 +1,16 @@
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        # set min price as the 1st ele in the array
+        minp=prices[0]
+        # set intial value of maxp=0
+        maxp=0
+        # as we have already set min as 1st ele, iterate through the remaining elements
+        for price in prices[1:]:
+            #find what is the maximum profit to be made
+            #can be calculated by price on that day - min price of the share
+            maxp=max(maxp,price-minp)
+            # calculate the min price, min(price on that day, min price value)
+            minp=min(price,minp)
+        # return the max profit made at the end
+        return maxp
+       
