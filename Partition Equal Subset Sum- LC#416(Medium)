@@ -1,0 +1,33 @@
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        # for equal sum partition, sum needs to be even.
+        # if sum is not even , then partition is not possible
+        if sum(nums)%2:
+            return False
+        
+        dp=set()
+        dp.add(0)
+        # target is half of sum of all elements
+        target=sum(nums)//2
+        
+        for i in range(len(nums)):
+            newdp=set()
+            # add the sum of each array ele and the each ele in the dp set
+            # reason being dp set contains the sum of earlier elements in it, e.g. sum of elements upto i index.
+            # so add now dp ele + nums[i]
+            for t in dp:
+                if t+nums[i] == target:
+                    return True
+                # we are using newdp set here as we dont want to lose/override original elements in dp()
+                newdp.add(t+nums[i])
+                newdp.add(t)
+            # add all elements from newdp to original array
+            dp=newdp
+        
+        if target in dp:
+            return True
+        else:
+            return False
+            
+       
+            
