@@ -1,0 +1,24 @@
+# we have to set the corresponding row and col value to 0 if any of the value in the row/col is 0
+
+# iterate through the matrx
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        rows=len(matrix)
+        cols=len(matrix[0])
+        rowset=set()
+        colset=set()
+        # have to set to see if any of the rows or cols visited are 0
+        for i in range(rows):
+            for j in range(cols):
+                if matrix[i][j]==0:
+                    rowset.add(i)
+                    colset.add(j)
+        
+        # iterate through the matrix again to see if any of the rows/cols were 0 before, if yes the set that [row][col] value to zero
+        for i in range(rows):
+            for j in range(cols):
+                if i in rowset or j in colset:
+                    matrix[i][j] = 0
