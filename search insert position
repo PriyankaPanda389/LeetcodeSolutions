@@ -1,0 +1,17 @@
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        #since its given the array is sorted, that means the position of the sorted element
+        #can be found where its index would be ideally, if  the element were to be present in         #the array
+        
+        start=0
+        end=len(nums)-1
+        while(start<=end):
+            mid=(start+end)//2
+            if target == nums[mid]:
+                return mid
+            if target < nums[mid]:
+                end=mid-1
+            else:
+                start=mid+1
+        return start
+        
