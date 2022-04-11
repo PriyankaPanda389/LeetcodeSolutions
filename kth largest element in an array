@@ -1,0 +1,15 @@
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        #intialize a list
+        minheap=[]
+        #turn it to a heap
+        heapify(minheap)
+        
+        #add all elements in the array to the heap
+        for ele in nums:
+            heappush(minheap, ele)
+            #pop all the other elements, except for the first k elements
+            if len(minheap) > k:
+                ele=heappop(minheap)
+        #now return the last element from minheap, as last element is the largest one
+        return heappop(minheap)
