@@ -1,0 +1,26 @@
+class Solution:
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+        
+        #edge cases
+        if len(nums)<=1:
+            return False
+        
+        if len(nums) == len(set(nums)):
+            return False
+        
+        d={}  # dict with key as the number and value as the index of the number
+        #iterate through each element and its index
+        for i, n in enumerate(nums):
+            #if ele not in dictionary, add it
+            #else if in dictionary , check the difference between the previous index of the 
+            #element and the current index that we are in now
+            
+            if n not in d:
+                d[n]=i
+            else:
+                if abs(d[n]-i)<=k:
+                    return True
+                else:
+                    #if diff<=k, add the other element and its index in the dict
+                    d[n]=i
+        return False
